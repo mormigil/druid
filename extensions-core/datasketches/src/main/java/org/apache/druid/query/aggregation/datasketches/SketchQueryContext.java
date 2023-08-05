@@ -35,4 +35,17 @@ public class SketchQueryContext
         DEFAULT_FINALIZE_OUTER_SKETCHES
     );
   }
+
+  public static final String CTX_IS_INPUT_SKETCH = "isInputSketch";
+
+  public static final boolean DEFAULT_IS_INPUT_SKETCH = false;
+
+  public static boolean isInputSketch(final PlannerContext plannerContext)
+  {
+    return QueryContexts.getAsBoolean(
+            CTX_IS_INPUT_SKETCH,
+            plannerContext.queryContextMap().get(CTX_IS_INPUT_SKETCH),
+            DEFAULT_IS_INPUT_SKETCH
+    );
+  }
 }

@@ -19,6 +19,7 @@
 
 package org.apache.druid.query.aggregation.datasketches.theta.sql;
 
+import com.yahoo.sketches.theta.Sketch;
 import org.apache.calcite.rel.core.AggregateCall;
 import org.apache.calcite.rel.core.Project;
 import org.apache.calcite.rel.type.RelDataType;
@@ -115,7 +116,7 @@ public abstract class ThetaSketchBaseSqlAggregator implements SqlAggregator
           columnArg.getDirectColumn(),
           sketchSize,
           finalizeSketch || SketchQueryContext.isFinalizeOuterSketches(plannerContext),
-          null,
+              SketchQueryContext.isInputSketch(plannerContext),
           null
       );
     } else {
@@ -146,7 +147,7 @@ public abstract class ThetaSketchBaseSqlAggregator implements SqlAggregator
           dimensionSpec.getDimension(),
           sketchSize,
           finalizeSketch || SketchQueryContext.isFinalizeOuterSketches(plannerContext),
-          null,
+              SketchQueryContext.isInputSketch(plannerContext),
           null
       );
     }
